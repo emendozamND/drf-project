@@ -1,0 +1,35 @@
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Bytecode / caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Django
+*.log
+db.sqlite3
+media/
+staticfiles/
+static/
+local_settings.py
+
+# Credenciales / variables
+.env
+*.env
+
+# Herramientas/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mac / win
+.DS_Store
+Thumbs.db
