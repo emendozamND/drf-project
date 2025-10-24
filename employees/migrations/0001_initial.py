@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name='Employee',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('student_id', models.CharField(max_length=10)),
-                ('name', models.CharField(max_length=50)),
-                ('branch', models.CharField(max_length=80)),
+                ('emp_id', models.CharField(max_length=20, unique=True)),
+                ('emp_name', models.CharField(max_length=50)),
+                ('designation', models.CharField(max_length=50)),
             ],
         ),
     ]
