@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from employees.models import Employee
+from  rest_framework import mixins,generics
 
 # Create your views here.
 @api_view(['GET', 'POST'])
@@ -45,7 +46,7 @@ def studentsDetailView(request,pk):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class Employees(APIView):
+""" class Employees(APIView):
      def get(self, request):
          employees = Employee.objects.all()
          serializer = EmployeeSerializer(employees, many=True)
@@ -79,4 +80,26 @@ class EmployeeDetail(APIView):
     def delete(self, request, pk):
         employee =self.get_object(pk)
         employee.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT) """
+
+class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+    def get(self, request):
+        return self.list(request)
+    
+    def post(self, request):
+        return self.create(request)
+
+class EmployeeDetail(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+    def get(self, request, pk):
+        return self.retrieve(request, pk)
+    def put(self, request, pk):
+        return self.update(request, pk)
+    def delete(self, request, pk):
+        return self.destroy(request, pk)
+    
