@@ -118,8 +118,9 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
 
     """
 
+""" 
 #VIEWSET
-""" class EmployeeViewset(viewsets.ViewSet):
+class EmployeeViewset(viewsets.ViewSet):
     def list (self, request):
         queryset = Employee.objects.all()
         serializer = EmployeeSerializer(queryset, many= True)
@@ -149,6 +150,6 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
 
  #model view Set
 class EmployeeViewset(viewsets.ModelViewSet):
-    queryset = Employee.objects()
+    queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
       
